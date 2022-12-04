@@ -20,7 +20,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	var fullyContained int
+	var overlapped int
 	textArr := strings.Split(buf.String(), "\n")
 	for _, text := range textArr {
 		elves := strings.Split(text, ",")
@@ -40,12 +40,12 @@ func main() {
 			elf2 = append(elf2, num)
 		}
 
-		if elf1[0] <= elf2[0] && elf1[1] >= elf2[1] {
-			fullyContained++
-		} else if elf2[0] <= elf1[0] && elf2[1] >= elf1[1] {
-			fullyContained++
+		if (elf1[0] >= elf2[0] && elf1[0] <= elf2[1]) || (elf1[1] >= elf2[0] && elf1[1] <= elf2[1]) {
+			overlapped++
+		} else if (elf2[0] >= elf1[0] && elf2[0] <= elf1[1]) || (elf2[1] >= elf1[0] && elf2[1] <= elf1[1]) {
+			overlapped++
 		}
 	}
 
-	log.Println(fullyContained)
+	log.Println(overlapped)
 }
