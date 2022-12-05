@@ -44,9 +44,7 @@ func takeAction(crates map[int][]string, procedure string) error {
 	from--
 	to--
 
-	for i := 0; i < n; i++ {
-		crates[to] = append(crates[to], crates[from][len(crates[from])-i-1])
-	}
+	crates[to] = append(crates[to], crates[from][len(crates[from])-n:]...)
 	crates[from] = crates[from][:len(crates[from])-n]
 
 	return nil
