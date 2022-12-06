@@ -26,17 +26,17 @@ func getCrates(text string) map[int][]string {
 
 func takeAction(crates map[int][]string, procedure string) error {
 	procedureArr := strings.Split(procedure, " ")
-	n, err := strconv.Atoi(string(procedureArr[1]))
+	n, err := strconv.Atoi(procedureArr[1])
 	if err != nil {
 		return err
 	}
 
-	from, err := strconv.Atoi(string(procedureArr[3]))
+	from, err := strconv.Atoi(procedureArr[3])
 	if err != nil {
 		return err
 	}
 
-	to, err := strconv.Atoi(string(procedureArr[5]))
+	to, err := strconv.Atoi(procedureArr[5])
 	if err != nil {
 		return err
 	}
