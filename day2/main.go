@@ -62,5 +62,5 @@ func main() {
 		log.Fatalf("can't read text: %v", err)
 	}
 
-	fmt.Printf("Total score: %d\n", calculateGameScore(string(text)))
+	fmt.Printf("Total score: %d\n", calculateGameScore(text))
 }
