@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	text, err := reader.GetTextFromInputFile("input.text")
+	text, err := reader.GetTextFromInputFile("./day4/input.text")
 	if err != nil {
 		log.Fatalf("can't read text: %v", err)
 	}
@@ -17,7 +17,8 @@ func main() {
 	textArr := strings.Split(text, "\n")
 	for _, text := range textArr {
 		elves := strings.Split(text, ",")
-		elf1, elf2 := []int{}, []int{}
+		var elf1 []int
+		var elf2 []int
 		for _, numStr := range strings.Split(elves[0], "-") {
 			num, err := strconv.Atoi(numStr)
 			if err != nil {

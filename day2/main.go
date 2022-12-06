@@ -57,7 +57,7 @@ func calculateGameScore(text string) int {
 }
 
 func main() {
-	text, err := reader.GetTextFromInputFile("input.text")
+	text, err := reader.GetTextFromInputFile("./day2/input.text")
 	if err != nil {
 		log.Fatalf("can't read text: %v", err)
 	}
