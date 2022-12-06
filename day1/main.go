@@ -1,22 +1,14 @@
 package main
 
 import (
-	"io"
-	"io/ioutil"
+	"github.com/swsd2544/AdventOfCode2022/reader"
 	"log"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func convertInputToElves(input io.Reader) ([]int, error) {
-	bytes, err := ioutil.ReadAll(input)
-	if err != nil {
-		return nil, err
-	}
-
+func convertInputToElves(text string) ([]int, error) {
 	elves := make([]int, 0)
-	text := string(bytes)
 	for _, elf := range strings.Split(text, "\n\n") {
 		totalCalories := 0
 		for _, caloriesText := range strings.Split(elf, "\n") {
@@ -47,12 +39,12 @@ func findTopThreeHighestCalories(elves []int) [3]int {
 }
 
 func main() {
-	input, err := os.Open("./day1/input.text")
+	text, err := reader.GetTextFromInputFile("input.text")
 	if err != nil {
-		log.Fatalf("can't read input file: %v", err)
+		log.Fatalf("can't read text: %v", err)
 	}
 
-	elves, err := convertInputToElves(input)
+	elves, err := convertInputToElves(text)
 	if err != nil {
 		log.Fatalf("input file isn't in the correct format: %v", err)
 	}

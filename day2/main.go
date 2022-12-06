@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"github.com/swsd2544/AdventOfCode2022/reader"
 	"log"
-	"os"
 	"strings"
 )
 
@@ -58,14 +57,9 @@ func calculateGameScore(text string) int {
 }
 
 func main() {
-	file, err := os.Open("./day2/input.text")
+	text, err := reader.GetTextFromInputFile("input.text")
 	if err != nil {
-		log.Panic("input file not found")
-	}
-
-	text, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Panic("error reading input")
+		log.Fatalf("can't read text: %v", err)
 	}
 
 	fmt.Printf("Total score: %d\n", calculateGameScore(string(text)))

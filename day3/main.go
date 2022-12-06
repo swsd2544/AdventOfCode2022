@@ -1,9 +1,8 @@
 package main
 
 import (
-	"io"
+	"github.com/swsd2544/AdventOfCode2022/reader"
 	"log"
-	"os"
 	"strings"
 )
 
@@ -32,28 +31,23 @@ func findSharedItemInPriorities(text, text2, text3 string) int {
 	return priorities
 }
 
-func rucksackReorganization(r io.Reader) (int, error) {
-	buf := new(strings.Builder)
-	_, err := io.Copy(buf, r)
-	if err != nil {
-		return 0, err
-	}
-
+func rucksackReorganization(text string) (int, error) {
 	var totalPriorities int
-	strarr := strings.Split(buf.String(), "\n")
-	for i := 0; i <= len(strarr)-3; i += 3 {
-		totalPriorities += findSharedItemInPriorities(strarr[i], strarr[i+1], strarr[i+2])
+	stringArray := strings.Split(text, "\n")
+	for i := 0; i <= len(stringArray)-3; i += 3 {
+		totalPriorities += findSharedItemInPriorities(stringArray[i], stringArray[i+1], stringArray[i+2])
 	}
 
 	return totalPriorities, nil
 }
 
 func main() {
-	file, err := os.Open("./day3/input.text")
+	text, err := reader.GetTextFromInputFile("input.text")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("can't read text: %v", err)
 	}
-	totalPriorities, err := rucksackReorganization(file)
+
+	totalPriorities, err := rucksackReorganization(text)
 	if err != nil {
 		log.Fatal(err)
 	}

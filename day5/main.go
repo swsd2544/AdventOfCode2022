@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"github.com/swsd2544/AdventOfCode2022/reader"
 	"log"
 	"strconv"
 	"strings"
@@ -51,14 +51,14 @@ func takeAction(crates map[int][]string, procedure string) error {
 }
 
 func main() {
-	buf, err := ioutil.ReadFile("./day5/input.text")
+	text, err := reader.GetTextFromInputFile("input.text")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("can't read text: %v", err)
 	}
 
-	text := strings.Split(string(buf), "\n\n")
-	crates := getCrates(text[0])
-	for _, procedure := range strings.Split(text[1], "\n") {
+	stringArray := strings.Split(text, "\n\n")
+	crates := getCrates(stringArray[0])
+	for _, procedure := range strings.Split(stringArray[1], "\n") {
 		err := takeAction(crates, procedure)
 		if err != nil {
 			log.Fatal(err)

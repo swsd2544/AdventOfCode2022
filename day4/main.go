@@ -1,27 +1,20 @@
 package main
 
 import (
-	"io"
+	"github.com/swsd2544/AdventOfCode2022/reader"
 	"log"
-	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	file, err := os.Open("./day4/input.text")
+	text, err := reader.GetTextFromInputFile("input.text")
 	if err != nil {
-		log.Fatal(err)
-	}
-
-	buf := new(strings.Builder)
-	_, err = io.Copy(buf, file)
-	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("can't read text: %v", err)
 	}
 
 	var overlapped int
-	textArr := strings.Split(buf.String(), "\n")
+	textArr := strings.Split(text, "\n")
 	for _, text := range textArr {
 		elves := strings.Split(text, ",")
 		elf1, elf2 := []int{}, []int{}
